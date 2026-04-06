@@ -31,20 +31,30 @@ That means:
 ## Local Development
 
 ```bash
-npm install
 npm run dev
 ```
 
-This starts:
+This starts a zero-dependency local control plane:
 
-- API at `http://localhost:8787`
-- Web at `http://localhost:5173`
+- API and web shell at `http://localhost:8787`
 
 ## What Exists Today
 
 - shared domain model for tasks, runs, approvals, artifacts, and events
-- a local monorepo scaffold for the control plane and dashboard
+- a file-backed control-plane API with mutation routes and resettable demo data
+- a local web shell served directly from the Node runtime
 - a product framing that keeps the implementation aligned with the thesis
 
-The next PRs add the real API, the dashboard, and OSS polish.
+## API Surface
 
+The demo control plane persists state in `data/demo-workspace.json`.
+
+- `GET /api/workspace`
+- `POST /api/workspace/reset`
+- `POST /api/tasks/:taskId/status`
+- `POST /api/tasks/:taskId/assignments`
+- `POST /api/approvals/:approvalId/decision`
+- `POST /api/artifacts`
+- `POST /api/runs`
+
+The next PRs deepen the dashboard and open-source polish.
