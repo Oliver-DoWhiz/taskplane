@@ -7,47 +7,114 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
+    <div class="backdrop">
+      <div class="orb orb-left"></div>
+      <div class="orb orb-right"></div>
+      <div class="grid-glow"></div>
+    </div>
+
     <main class="shell">
-      <section class="hero">
-        <p class="eyebrow">Agent-Native Control Plane</p>
-        <h1>Taskplane keeps agent collaboration in explicit state, not hidden chat history.</h1>
-        <p class="lede">
-          The system is organized around the task graph, artifact trail, approval gates, and the
-          event timeline that turns autonomous work into something teams can actually operate.
-        </p>
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Agent-Native Control Plane</p>
+          <h1>Taskplane turns messy multi-agent work into an operable mission board.</h1>
+          <p class="lede" id="mission"></p>
+        </div>
+
+        <div class="hero-panel">
+          <div class="hero-card">
+            <p class="card-label">North star</p>
+            <h2 id="north-star"></h2>
+          </div>
+          <div class="hero-card hero-score">
+            <p class="card-label">Workspace health</p>
+            <div class="score">
+              <span id="health-score">--</span>
+              <small id="health-copy">live posture</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="command-strip panel">
+        <div class="strip-header">
+          <div>
+            <p class="card-label">Control room</p>
+            <h2>Operate the graph, not the chat log.</h2>
+          </div>
+          <div class="strip-actions">
+            <button class="ghost-button" id="refresh-button" type="button">Refresh</button>
+            <button class="accent-button" id="reset-button" type="button">Reset Demo State</button>
+          </div>
+        </div>
+        <div class="metrics" id="metrics"></div>
       </section>
 
-      <section class="grid">
-        <article class="panel">
-          <h2>North Star</h2>
-          <p id="north-star"></p>
-          <div class="score">
-            <span id="health-score">--</span>
-            <small>workspace health</small>
+      <section class="main-grid">
+        <section class="panel board-panel">
+          <div class="section-heading">
+            <div>
+              <p class="card-label">Task graph</p>
+              <h2>Lane board</h2>
+            </div>
+            <p class="section-copy">Click a card to inspect and mutate the control-plane state.</p>
           </div>
-        </article>
+          <div class="lane-board" id="lane-board"></div>
+        </section>
 
-        <article class="panel">
-          <h2>Objects</h2>
-          <ul class="list">
-            <li><span id="task-count">0</span> tasks</li>
-            <li><span id="run-count">0</span> active runs</li>
-            <li><span id="approval-count">0</span> approval gate</li>
-            <li><span id="artifact-count">0</span> tracked artifact</li>
-          </ul>
-        </article>
+        <aside class="side-column">
+          <section class="panel detail-panel">
+            <div class="section-heading">
+              <div>
+                <p class="card-label">Selected task</p>
+                <h2>Operator detail</h2>
+              </div>
+            </div>
+            <div id="task-detail"></div>
+          </section>
 
-        <article class="panel full">
-          <h2>Core Thesis</h2>
-          <div class="pill-row">
-            <span>Task</span>
-            <span>Artifact</span>
-            <span>Approval</span>
-            <span>Run</span>
-            <span>Event</span>
+          <section class="panel approvals-panel">
+            <div class="section-heading">
+              <div>
+                <p class="card-label">Human gates</p>
+                <h2>Approvals</h2>
+              </div>
+            </div>
+            <div id="approvals"></div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="lower-grid">
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="card-label">Artifacts</p>
+              <h2>Deliverable trail</h2>
+            </div>
           </div>
-          <p id="mission"></p>
-        </article>
+          <div id="artifacts"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="card-label">Agents</p>
+              <h2>Registry posture</h2>
+            </div>
+          </div>
+          <div id="agents"></div>
+        </section>
+
+        <section class="panel timeline-panel">
+          <div class="section-heading">
+            <div>
+              <p class="card-label">Audit flow</p>
+              <h2>Event timeline</h2>
+            </div>
+          </div>
+          <div id="timeline"></div>
+        </section>
       </section>
     </main>
 
