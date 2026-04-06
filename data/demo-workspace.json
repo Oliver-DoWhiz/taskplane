@@ -1,0 +1,159 @@
+{
+  "workspaceName": "Atlas Labs",
+  "mission": "Ship agent-native product work through explicit task state and reviewable artifacts.",
+  "northStar": "Time from idea to approved artifact",
+  "healthScore": 81,
+  "agents": [
+    {
+      "id": "planner",
+      "name": "Planner",
+      "role": "Breaks goals into a visible graph.",
+      "latencySla": "< 2 min",
+      "tools": [
+        "research",
+        "spec drafting",
+        "dependency shaping"
+      ],
+      "guardrails": [
+        "cannot ship",
+        "must create artifacts",
+        "must explain handoffs"
+      ]
+    },
+    {
+      "id": "builder",
+      "name": "Builder",
+      "role": "Implements bounded tasks against repo and tools.",
+      "latencySla": "< 20 min",
+      "tools": [
+        "git",
+        "tests",
+        "patching",
+        "preview generation"
+      ],
+      "guardrails": [
+        "needs plan context",
+        "cannot override approvals"
+      ]
+    },
+    {
+      "id": "reviewer",
+      "name": "Reviewer",
+      "role": "Checks quality, regression risk, and release readiness.",
+      "latencySla": "< 5 min",
+      "tools": [
+        "diff review",
+        "test audit",
+        "release checklist"
+      ],
+      "guardrails": [
+        "blocks release on unresolved risk"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "title": "Define control plane scope",
+      "objective": "Turn the product thesis into explicit objects and lanes.",
+      "owner": "human",
+      "status": "done",
+      "lane": "plan",
+      "assignees": [
+        "planner"
+      ],
+      "dependsOn": [],
+      "priority": "high",
+      "outcome": "Shared task, run, artifact, approval, and event model.",
+      "updatedAt": "2026-04-06T20:00:00.000Z"
+    },
+    {
+      "id": "task-2",
+      "title": "Implement workflow API",
+      "objective": "Expose the control-plane state to a live dashboard.",
+      "owner": "builder",
+      "status": "running",
+      "lane": "build",
+      "assignees": [
+        "builder"
+      ],
+      "dependsOn": [
+        "task-1"
+      ],
+      "priority": "high",
+      "outcome": "Mutation-friendly workspace snapshot API.",
+      "updatedAt": "2026-04-06T20:22:00.000Z"
+    },
+    {
+      "id": "task-3",
+      "title": "Review release gate",
+      "objective": "Require explicit approval before shipping a generated patch.",
+      "owner": "reviewer",
+      "status": "blocked",
+      "lane": "review",
+      "assignees": [
+        "reviewer",
+        "human"
+      ],
+      "dependsOn": [
+        "task-2"
+      ],
+      "priority": "medium",
+      "outcome": "One-click approval with event trail.",
+      "updatedAt": "2026-04-06T20:35:00.000Z"
+    }
+  ],
+  "runs": [
+    {
+      "id": "run-1",
+      "taskId": "task-2",
+      "agentId": "builder",
+      "status": "running",
+      "summary": "Standing up the initial API surface.",
+      "startedAt": "2026-04-06T20:21:00.000Z",
+      "costUsd": 2.31
+    }
+  ],
+  "approvals": [
+    {
+      "id": "approval-1",
+      "taskId": "task-3",
+      "title": "Ship patch artifact",
+      "reason": "Generated code is ready for merge and needs a human decision.",
+      "requestedBy": "reviewer",
+      "approver": "human",
+      "status": "pending",
+      "requestedAt": "2026-04-06T20:36:00.000Z"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "artifact-1",
+      "taskId": "task-1",
+      "kind": "spec",
+      "title": "Control-plane domain model",
+      "version": 1,
+      "summary": "Canonical schema shared across API and UI.",
+      "uri": "/docs/architecture.md",
+      "updatedAt": "2026-04-06T20:02:00.000Z"
+    }
+  ],
+  "events": [
+    {
+      "id": "event-1",
+      "taskId": "task-1",
+      "actor": "planner",
+      "category": "artifact",
+      "message": "Published the initial control-plane domain model.",
+      "createdAt": "2026-04-06T20:02:00.000Z"
+    },
+    {
+      "id": "event-2",
+      "taskId": "task-2",
+      "actor": "builder",
+      "category": "run",
+      "message": "Started the workflow API implementation run.",
+      "createdAt": "2026-04-06T20:21:00.000Z"
+    }
+  ]
+}
