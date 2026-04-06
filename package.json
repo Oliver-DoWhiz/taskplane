@@ -1,0 +1,12 @@
+{
+  "name": "taskplane",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Agent-native task control plane for humans, agents, tools, and approvals.",
+  "scripts": {
+    "dev": "node apps/api/src/server.mjs",
+    "start": "node apps/api/src/server.mjs",
+    "test": "node --test packages/core/src/index.test.mjs"
+  }
+}
